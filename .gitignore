@@ -9,7 +9,7 @@
 *.test
 
 # build
-./build
+build
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
