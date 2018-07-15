@@ -2,13 +2,13 @@ package main
 
 import (
 	"bufio"
+	"encoding/json"
 	"io"
 	"log"
 	"net"
-	"net/http"
 	"sync"
 	"time"
-	"encoding/json"
+
 	"github.com/davecgh/go-spew/spew"
 	"github.com/joho/godotenv"
 )

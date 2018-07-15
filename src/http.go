@@ -3,9 +3,11 @@ package main
 import (
 	"encoding/json"
 	"io"
-	"github.com/gorilla/mux"
-	"github.com/davecgh/go-spew/spew"
+	"log"
 	"net/http"
+
+	"github.com/davecgh/go-spew/spew"
+	"github.com/gorilla/mux"
 )
 
 func makeMuxRouter() http.Handler {
@@ -38,7 +40,10 @@ func handleWriteBlock(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 
 	mutex.Lock()
-	newBlock := GenerateBlock(Blockchain[len(Blockchain)-1], m.Content)
+	newBlock, err := GenerateBlock(Blockchain[len(Blockchain)-1], m.Content)
+	if err != nil {
+		log.Fatal(err)
+	}
 	mutex.Unlock()
 
 	if isBlockValid(newBlock, Blockchain[len(Blockchain)-1]) {
